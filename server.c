@@ -1,7 +1,15 @@
+#define WIN32_LEAN_AND_MEAN
+
 #include <stdio.h>
 #include <string.h>
+
+// clang-format off
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#include <windows.h>
+#include <mswsock.h>
+#include "fs.h"
+// clang-format on
 
 #define PORT 7000
 #define BUF_SIZE 8192
@@ -83,6 +91,38 @@ static void send_response(SOCKET client_socket,
     }
 }
 
+static void send_file(SOCKET client_socket,
+                      const char* path) {
+    file_handle file;
+    if (fs_open(path, &file) != 0) {
+        send_response(
+            client_socket, "404 Not Found", "<h1>404 Not Found</h1>");
+        return;
+    }
+
+    char header[256];
+    int len = snprintf(header,
+                       sizeof(header),
+                       "HTTP/1.0 200 OK\r\n"
+                       "Content-Type: text/html\r\n"
+                       "Content-Length: %lld\r\n"
+                       "Connection: close\r\n"
+                       "\r\n",
+                       file.size);
+
+    TRANSMIT_FILE_BUFFERS buffers = {0};
+    buffers.Head = header;
+    buffers.HeadLength = (DWORD)len;
+
+    if (!TransmitFile(
+            client_socket, file.handle, 0, 0, NULL, &buffers, 0)) {
+        (void)fprintf(
+            stderr, "TransmitFile failed: %lu\n", GetLastError());
+    }
+
+    fs_close(&file);
+}
+
 /* Routing */
 
 typedef void (*route_handler)(SOCKET client_socket);
@@ -100,9 +140,14 @@ static void route_about(SOCKET client_socket) {
     send_response(client_socket, "200 OK", "<h1>About</h1>");
 }
 
+static void route_file(SOCKET client_socket) {
+    send_file(client_socket, "index.html");
+}
+
 static const route ROUTES[] = {
     {"/", route_root},
     {"/about", route_about},
+    {"/file", route_file},
 };
 
 static void route_request(SOCKET client_socket,

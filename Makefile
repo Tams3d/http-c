@@ -1,6 +1,6 @@
 CC       := clang
 CFLAGS   := -std=c11 -Wall -Wextra -Wpedantic -D_WIN32_WINNT=0x0601 -I.
-LDLIBS   := -lws2_32
+LDLIBS   := -lws2_32 -lmswsock
 TARGET   := server
 SRCS     := $(wildcard *.c)
 OBJS     := $(SRCS:.c=.o)
