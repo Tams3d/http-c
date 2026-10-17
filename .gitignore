@@ -1,0 +1,106 @@
+# test files and hidden folders
+.excalidraw*
+notes.md
+temp*.cpp
+test*.*
+
+# Personal vscode configs
+.vscode/
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.obj.*
+*.td12
+
+# Precompiled Headers
+*.gch
+*.pch
+*.pchi
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.exe~
+*.com
+*.elf
+
+# Build directories
+/bin/
+obj/
+build/
+cmake-build*/
+out/
+.cache/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+CMakeUserPresets.json
+CTestTestfile.cmake
+compile_commands.json
+
+# Ninja
+.ninja_log
+.ninja_deps
+.ninja_timestamp
+
+# MSYS2 / MinGW
+*.stackdump
+
+# IDE
+*.swp
+*.swo
+*~
+.idea/
+.vs/
+*.user
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temp
+tmp/
+temp/
+*.bak
+*.tmp
+
+# Vendored dependencies (negates must be last to override all above)
+!extern/
+!extern/*/
+!extern/*/include/
+!extern/*/include/**/*
+!extern/*/lib/
+!extern/*/lib/**/*
+!extern/*/bin/
+!extern/*/bin/*.dll

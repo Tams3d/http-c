@@ -1,0 +1,77 @@
+Checks: >
+  *,
+  -abseil-*,
+  -altera-*,
+  -android-*,
+  -readability-magic-numbers,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-implicit-widening-of-multiplication-result,
+  -cppcoreguidelines-*,
+  -fuchsia-*,
+  -hicpp-*,
+  -llvm-*,
+  -llvmlibc-*,
+  -modernize-use-trailing-return-type,
+  -readability-identifier-length,
+  -readability-implicit-bool-conversion,
+  -readability-magic-numbers,
+  -performance-unnecessary-value-param
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+FormatStyle: google
+CheckOptions:
+  # Functions
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+  # Variables
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  # Local variables
+  - key: readability-identifier-naming.LocalVariableCase
+    value: lower_case
+  # Function parameters
+  - key: readability-identifier-naming.ParameterCase
+    value: lower_case
+  # Class names
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  # Struct names
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  # Union names
+  - key: readability-identifier-naming.UnionCase
+    value: CamelCase
+  # Enum types
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  # Enum constants
+  - key: readability-identifier-naming.EnumConstantCase
+    value: CamelCase
+  # Class members
+  - key: readability-identifier-naming.MemberCase
+    value: lower_case
+  # Static data members
+  - key: readability-identifier-naming.StaticVariableCase
+    value: lower_case
+  # Constants
+  - key: readability-identifier-naming.ConstantCase
+    value: UPPER_CASE
+
+  # Global constants
+  - key: readability-identifier-naming.GlobalConstantCase
+    value: UPPER_CASE
+
+  # Namespaces
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  # Macros
+  - key: readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+  # Template parameters
+  - key: readability-identifier-naming.TemplateParameterCase
+    value: CamelCase
+  # Type aliases
+  - key: readability-identifier-naming.TypeAliasCase
+    value: CamelCase
+  - key: bugprone-string-constructor.LargeLength
+    value: '1048576'
